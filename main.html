@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mirope - Request Ride</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f7f7f7;
+        }
+        h1 {
+            color: #1d3557;
+        }
+        button {
+            background-color: #1d3557;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #457b9d;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mirope</h1>
+    <p>Press the button below to request an autonomous ride.</p>
+    <button onclick="startCar()">Request Ride</button>
+
+    <script>
+        function startCar() {
+            fetch('http://<QUANSER_API_IP>:<PORT>/start', {
+                method: 'POST'
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Autonomous car started!');
+                } else {
+                    alert('Failed to start the car.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Could not connect to the API.');
+            });
+        }
+    </script>
+</body>
+</html>
